@@ -31,38 +31,14 @@ DATA = {
 #   }
 # }
 
-def omlet_view(request):
+def home_view(request, param):
     template_name = 'calculator/index.html'
-    count = int(request.GET.get("servings"))
+    count = int(request.GET.get("servings",1))
     my_dict = {}
-    for i in DATA['omlet'].items():
+    for i in DATA[str(param)].items():
         next = i[1]*count
         my_dict[i[0]] = next    
     context = {
-    'recipe':my_dict
-    }
-    return render(request, template_name, context)
-
-def pasta_view(request):
-    template_name = 'calculator/index.html'
-    count = int(request.GET.get("servings"))
-    my_dict = {}
-    for i in DATA['pasta'].items():
-        next = i[1]*count
-        my_dict[i[0]] = next    
-    context = {
-    'recipe':my_dict
-    }
-    return render(request, template_name, context)
-
-def buter_view(request):
-    template_name = 'calculator/index.html'
-    count = int(request.GET.get("servings"))
-    my_dict = {}
-    for i in DATA['buter'].items():
-        next = i[1]*count
-        my_dict[i[0]] = next    
-    context = {
-    'recipe':my_dict
+    'recipe': my_dict 
     }
     return render(request, template_name, context)
